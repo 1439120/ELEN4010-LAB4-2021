@@ -1,23 +1,30 @@
-// const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
+
 const app = express()
+
+// register view engine
+app.set('view engine', 'ejs')
 
 // tell Express to use bodyParser for JSON and URL encoded form bodies
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // loading routes
-const mainRouter = require('./mainRouter.js')
-const classRouter = require('./classRoutes.js')
+const homeRouter = require('./routes/homeRouter.js')
+const groupRouter = require('./routes/groupRouter.js')
+const calendarRouter = require('./routes/calendarRouter.js')
+const loginRouter = require('./routes/loginRouter.js')
+const rateRouter = require('./routes/rateRouter.js')
 
-// mounting our routers
-app.use(mainRouter)
-app.use('/class', classRouter)
+// mounting our routes
+app.use('/', homeRouter)
+app.use('/group', groupRouter)
+app.use('/calendar', calendarRouter)
+app.use('/login', loginRouter)
+app.use('/rate', rateRouter)
 
-app.use('/cdn', express.static('public')) /* this will mount
-your public directory to '/cdn'. i.e. your scripts folder
-will be at /cdn/scripts */
+app.use('/cdn', express.static('public'))
 
 const port = process.env.PORT || 3000
 app.listen(port)
