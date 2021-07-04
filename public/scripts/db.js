@@ -3,10 +3,10 @@ const mssql = require('mssql')
 // Make sure this is private to this module
 const config = {
   server: 'sgm-server-2.database.windows.net',
-  database: 'StudyGroupDB',
+  database: process.env.DB_NAME || 'StudyGroupDB',
   // Put login details in env. variables for security
-  user: 'StudyGroupManager',
-  password: '#1Study-Group',
+  user: process.env.DB_USER || 'StudyGroupManager',
+  password: process.env.DB_PASS || '#1Study-Group',
   port: 1433,
   // Required for Azure
   options: {
