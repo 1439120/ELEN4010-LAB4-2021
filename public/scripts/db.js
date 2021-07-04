@@ -1,5 +1,5 @@
 const mssql = require('mssql')
-require('dotenv').config()
+// require('dotenv').config()
 // Make sure this is private to this module
 const config = {
   server: 'sgm-server-2.database.windows.net',
